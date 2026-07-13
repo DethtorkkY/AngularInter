@@ -1,0 +1,37 @@
+<form #eventForm="ngForm" (ngSubmit)="handleSubmit(eventForm)">
+    <div>
+        <h1>Название мероприятия</h1>
+        <input
+            type="text"
+            name="event-name"
+            placeholder="Введите название мероприятия">
+    </div>
+    <div>
+        <label>Тип мероприятия</label>
+        <select
+            name="event-type"
+            [(ngModel)]="selectedOption">
+            <option value="conference">Конференция</option>
+            <option value="webinar">Вебинар</option>
+            <option value="meeting">Встреча</option>
+        </select>
+        <p>
+            Выбранный тип мероприятия:
+            {{ eventNames[selectedOption] }}
+        </p>
+    </div>
+    <button type="submit">
+        Отправить
+    </button>
+    <br><br>
+    <button type="button">
+        Перейти к мероприятиям
+    </button>
+</form>
+<hr>
+<h2>События</h2>
+<ul>
+    <li *ngFor="let event of events">
+        {{ event.name }} — {{ eventNames[event.type] }}
+    </li>
+</ul>
