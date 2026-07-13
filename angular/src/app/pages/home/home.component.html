@@ -10,7 +10,8 @@
         <label>Тип мероприятия</label>
         <select
             name="event-type"
-            [(ngModel)]="selectedOption">
+            [(ngModel)]="selectedOption"
+            (change)="onFilterChange()">
             <option value="conference">Конференция</option>
             <option value="webinar">Вебинар</option>
             <option value="meeting">Встреча</option>
@@ -31,7 +32,14 @@
 <hr>
 <h2>События</h2>
 <ul>
-    <li *ngFor="let event of events">
-        {{ event.name }} — {{ eventNames[event.type] }}
-    </li>
+    <li *ngFor="let event of events">{{ event.name }} — {{ eventNames[event.type] }}</li>
 </ul>
+<div>
+    <button type="button" (click)="prevPage()">Предыдущая</button>
+        <span>Страница {{ page }}</span>
+    <button type="button" [disabled]="events.length < limit" (click)="nextPage()">Следующая</button>
+</div>
+<button (click)="createComponent()">
+    Показать динамический компонент
+</button>
+<ng-template #dynamicContainer></ng-template>

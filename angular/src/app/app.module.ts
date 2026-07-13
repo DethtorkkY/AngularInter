@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './pages/home/home.component';
+import { HelloComponent } from './components/hello/hello.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HelloComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,9 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule
+  ],
+  entryComponents: [
+    HelloComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
