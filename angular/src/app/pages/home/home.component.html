@@ -25,14 +25,18 @@
         Отправить
     </button>
     <br><br>
-    <button type="button">
-        Перейти к мероприятиям
-    </button>
 </form>
 <hr>
 <h2>События</h2>
 <ul>
-    <li *ngFor="let event of events">{{ event.name }} — {{ eventNames[event.type] }}</li>
+  <li *ngFor="let event of events; trackBy: trackById">
+    {{ event.name }} — {{ eventNames[event.type] }}
+    <button
+      type="button"
+      (click)="goToEvent(event)">
+      Подробнее
+    </button>
+  </li>
 </ul>
 <div>
     <button type="button" (click)="prevPage()">Предыдущая</button>

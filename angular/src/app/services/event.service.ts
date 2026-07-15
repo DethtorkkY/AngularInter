@@ -37,4 +37,9 @@ export class EventService {
       formData
     );
   }
+  getEventById(id: number): Observable<Event> {
+    return this.http.get<Event>(
+      `http://localhost:3001/api/event/${id}`
+    );
+  }
 }

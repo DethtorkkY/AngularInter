@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { NgForm } from '@angular/forms';
 import { ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { HelloComponent } from '../../components/hello/hello.component';
+import { Router } from '@angular/router';
 
 interface Event {
   id: number;
@@ -18,7 +19,7 @@ interface Event {
 
 export class HomeComponent implements OnInit {
 
-  constructor(private eventService: EventService, private resolver: ComponentFactoryResolver) {}
+  constructor(private eventService: EventService, private resolver: ComponentFactoryResolver, private router: Router) {}
 
   @ViewChild('dynamicContainer', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
@@ -51,11 +52,9 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
   ngOnInit(): void {
     this.loadEvents();
   }
-
   loadEvents(): void {
     const offset = (this.page - 1) * this.limit;
 
@@ -69,27 +68,36 @@ export class HomeComponent implements OnInit {
       error: err => console.error(err)
     });
   }
-
   onFilterChange(): void {
     this.page = 1;
     this.loadEvents();
   } 
-
   nextPage(): void {
     this.page++;
     this.loadEvents();
   }
-
   prevPage(): void {
     if (this.page > 1) {
       this.page--;
       this.loadEvents();
     }
   }
-
   createComponent(): void {
     this.container.clear();
     const factory = this.resolver.resolveComponentFactory(HelloComponent);
     this.container.createComponent(factory);
+  }
+  goToEvent(event: Event): void {
+    this.router.navigate(
+      ['/event'],
+      {
+        queryParams: {
+          id: event.id
+        }
+      }
+    );
+  }
+  trackById(index: number, event: Event): number {
+    return event.id;
   }
 }
