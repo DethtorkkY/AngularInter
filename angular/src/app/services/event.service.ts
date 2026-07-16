@@ -21,7 +21,7 @@ export class EventService {
     filterBy?: string): Observable<Event[]> {
 
     let url =
-      `http://localhost:3001/api/filter?limit=${limit}&offset=${offset}`;
+      `https://angularinter.onrender.com/api/filter?limit=${limit}&offset=${offset}`;
 
     if (filterBy) {
       url += `&filterBy=${filterBy}`;
@@ -33,13 +33,13 @@ export class EventService {
 
   submitEvent(formData: FormData): Observable<any> {
     return this.http.post(
-      'http://localhost:3001/api/submit',
+      'https://angularinter.onrender.com/api/submit',
       formData
     );
   }
   getEventById(id: number): Observable<Event> {
     return this.http.get<Event>(
-      `http://localhost:3001/api/event/${id}`
+      `https://angularinter.onrender.com/api/event/${id}`
     );
   }
 }
