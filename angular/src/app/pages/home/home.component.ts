@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { NgForm } from '@angular/forms';
 import { ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { HelloComponent } from '../../components/hello/hello.component';
 import { Router } from '@angular/router';
+import { ImageCarouselComponent } from '../../components/image-carousel/image-carousel.component';
 
 interface Event {
   id: number;
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
   }
   createComponent(): void {
     this.container.clear();
-    const factory = this.resolver.resolveComponentFactory(HelloComponent);
+    const factory = this.resolver.resolveComponentFactory(ImageCarouselComponent);
     this.container.createComponent(factory);
   }
   goToEvent(event: Event): void {

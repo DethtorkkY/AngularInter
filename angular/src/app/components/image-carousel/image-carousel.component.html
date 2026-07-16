@@ -1,0 +1,19 @@
+<div class="carousel">
+    <div
+        class="card"
+        *ngFor="let image of visibleImages; let i = index"
+        [ngClass]="'position-' + getPosition(i)">
+        <img [src]="image.url">
+    </div>
+</div>
+<div class="controls">
+    <button (click)="previous()">←</button>
+    <div class="dots">
+        <span
+            *ngFor="let dot of visibleDots"
+            (click)="goTo(dot)"
+            [class.active]="dot===currentIndex">
+        </span>
+    </div>
+    <button (click)="next()">→</button>
+</div>

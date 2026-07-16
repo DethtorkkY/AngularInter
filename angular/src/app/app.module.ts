@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
+import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HelloComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    ImageCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
     HttpClientModule
   ],
   entryComponents: [
-    HelloComponent
+    HelloComponent,
+    ImageCarouselComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
